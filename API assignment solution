@@ -1,0 +1,40 @@
+import requests
+
+# Define the API key and the base URL
+API_KEY = 'your_api_key_here'
+BASE_URL = 'https://api.openweathermap.org/data/2.5/weather'
+
+# Define the location for which we want to get the weather data
+location = 'your_location_here'  # e.g., 'London,uk'
+
+# Construct the complete API endpoint
+url = f'{BASE_URL}?q={location}&appid={API_KEY}&units=metric'
+
+# Send the GET request
+response = requests.get(url)
+
+# Check if the request was successful
+if response.status_code == 200:
+    data = response.json()
+    
+    # Extract relevant data
+    cloud_cover = data['clouds']['all']
+    temperature = data['main']['temp']
+    wind_speed = data['wind']['speed']
+    wind_direction = data['wind']['deg']
+    visibility = data['visibility']
+    relative_humidity = data['main']['humidity']
+    precipitation = data.get('rain', {}).get('1h', 0)  # 1h rainfall, if available
+    dew_point = data['main']['dew_point']  # Note: OpenWeatherMap may not provide dew point in standard plan
+    
+    # Display the weather data
+    print(f"Cloud Cover: {cloud_cover}%")
+    print(f"Temperature: {temperature}°C")
+    print(f"Wind Speed: {wind_speed} m/s")
+    print(f"Wind Direction: {wind_direction}°")
+    print(f"Visibility: {visibility} m")
+    print(f"Relative Humidity: {relative_humidity}%")
+    print(f"Precipitation (last hour): {precipitation} mm")
+    print(f"Dew Point: {dew_point}°C")
+else:
+    print(f"Failed to get weather data: {response.status_code}")
