@@ -1,0 +1,38 @@
+QUESTION1
+
+def hcf( a,b):
+    if(a%b==0):
+       return b
+    else:
+        return hcf(b , a%b)
+a = int(input("enter the first no"))
+b = int(input("enter the second no")) 
+result = hcf(a,b)
+print("The hcf is =",  result)
+
+QUESTION2
+
+n = int(input("enter a no:"))
+c=0
+fac=1
+for i in range(n):
+   fac = fac *(i+1)
+print("Factorial is",fac)
+while (fac!=0):
+   if(fac % 10 == 0):
+     c+= 1
+   fac= fac/10
+print ("No of trailing zeroes is", c)
+
+QUESTION3 ?
+
+QUESTION4
+[[1,4],
+ [9,16]]
+
+QUESTION5
+[3,4,5]
+
+QUESTION6 ?
+
+
